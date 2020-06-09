@@ -1,5 +1,18 @@
-| Problems                  | Complexity  | Language  |
-|-------------------------  |------------ |---------- |
-| To BrainFuck Transpiler   | 1 kyu       | Ruby      |
-| Assembler interpreter     | 2 kyu       | Ruby      |
-|                           |             |           |
+| Problems                                                                                                                                                                                                                | Complexity  | Language    |
+|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  |------------ |-----------  |
+| [To BrainFuck Transpiler](https://github.com/nam288/codewars.com/tree/master/To%20BrainFuck%20Transpiler)                                                                                                               | 1 kyu       | Ruby        |
+| [Assembler interpreter](https://github.com/nam288/codewars.com/tree/master/Assembler%20Interpreter)                                                                                                                     | 2 kyu       | Ruby        |
+| [Become immortal](https://github.com/nam288/codewars.com/tree/master/BECOME%20IMMORTAL)                                                                                                                                 | 1 kyu       | Ruby        |
+| [Symbolic differentiation of prefix expressions](https://github.com/nam288/codewars.com/tree/master/Symbolic%20differentiation%20of%20prefix%20expressions)                                                             | 2 kyu       | Ruby        |
+| [Blaine is a pain](https://github.com/nam288/codewars.com/tree/master/Blaine%20is%20a%20pain)                                                                                                                           | 2 kyu       | Ruby        |
+| [Expression Transpiler](https://github.com/nam288/codewars.com/tree/master/Expression%20Transpiler)                                                                                                                     | 2 kyu       | C++, Ruby   |
+| [Faberge easter eggs crush test](https://github.com/nam288/codewars.com/tree/master/Faberge%20easter%20eggs%20crush%20test%20%5Blinear%5D)                                                                              | 1 kyu       | Ruby        |
+| [Equal to 24](https://github.com/nam288/codewars.com/tree/master/Fastest%20Code:%20Equal%20to%2024)                                                                                                                     | 2 kyu       | JS          |
+| [Flou Game](https://github.com/nam288/codewars.com/tree/master/Flou%20Game)                                                                                                                                             | 2 kyu       | JS          |
+| [Freak Contaz Sequence](https://github.com/nam288/codewars.com/tree/master/Freak%20Contaz%20Sequence)                                                                                                                   | 2 kyu       | JS          |
+| [Full Metal Chemist_Parse me](https://github.com/nam288/codewars.com/tree/master/Full%20Metal%20Chemist_Parse%20me)                                                                                                     | 1 kyu       | JS          |
+| [Haskellish Syntax](https://github.com/nam288/codewars.com/tree/master/Haskellish%20Syntax)                                                                                                                             | 1 kyu       | Ruby        |
+| [Integer Square Root](https://github.com/nam288/codewars.com/tree/master/Integer%20Square%20Root)                                                                                                                       | 2 kyu       | JS          |
+| [RegExp Check if divisible by 7 in binary representation](https://github.com/nam288/codewars.com/tree/master/Regular%20Expression%20-%20Check%20if%20divisible%20by%207%20in%20binary%20representation)   | 2 kyu       | Ruby        |
+| [RoboScript](https://github.com/nam288/codewars.com/tree/master/RoboScript)                                                                                                                                             | 1 kyu       | Python      |
+| [Whitespace Interpreter](https://github.com/nam288/codewars.com/tree/master/Whitespace%20Interpreter)                                                                                                                   | 2 kyu       | JS          |
