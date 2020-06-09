@@ -1,4 +1,4 @@
-Some of my favorite katas from [Codewars.com](codewars.com)
+Some of my favorite katas with solution from [Codewars.com](codewars.com)
 
 | Problems                                                                                                                                                                                                                | Complexity  | Language    |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  |------------ |-----------  |
