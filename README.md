@@ -1,3 +1,5 @@
+Some of my favorite kata from [Codewars.com](codewars.com)
+
 | Problems                                                                                                                                                                                                                | Complexity  | Language    |
 |-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  |------------ |-----------  |
 | [To BrainFuck Transpiler](https://github.com/nam288/codewars.com/tree/master/To%20BrainFuck%20Transpiler)                                                                                                               | 1 kyu       | Ruby        |
