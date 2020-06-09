@@ -63,8 +63,6 @@ $var = {}
 $procs = {}
 $stack_context  = ['main']
 
-puts "Finish initialize"
-
 class ParsingError < StandardError; end
 
 class ExpectedEndOfLine           < ParsingError; end
@@ -134,7 +132,6 @@ end
 class Array
   def shift_space
     while $string_mode == false and first == " "
-      # p first
       shift
     end
     shift
@@ -278,7 +275,6 @@ def _next a
 end
 
 def _move(from, to, zero_to = true)
-  # pos: from = 0; to = old_from + (to if zero_to == false)
   raise InvalidTypeArgument unless (from.is_a? Variable) and (to.is_a? Variable)
   return if from === to
 
@@ -289,7 +285,6 @@ def _move(from, to, zero_to = true)
 end
 
 def _move2(from, to1, to2)
-  # pos: from = 0; to1 = to2 = old_from
   raise InvalidTypeArgument unless from.is_a? Variable
   raise InvalidTypeArgument unless to1.is_a? Variable
   raise InvalidTypeArgument unless to2.is_a? Variable
@@ -301,14 +296,9 @@ def _move2(from, to1, to2)
   _to(to1); '+'.add
   _to(to2); '+'.add
   _next(from)
-
-  # to1._v = to2._v = from._v
-  # from._v = 0
 end
 
 def _copy(from, to)
-  # pos: to = value_at_from if from === Variable or
-  #      to = form          if from === Integer
   raise InvalidTypeArgument unless to.is_a? Variable
   raise InvalidTypeArgument unless (from.is_a? Variable) or (from.is_a? Integer)
   return if from === to
@@ -375,8 +365,6 @@ def _sub(res, a, b)
 end
 
 def _mul(res, a, b)
-
-  # res._v = (a._v * b._v).wrap
   _a, _b, _res = Variable.new.value(a), Variable.new.value(b), Variable.new
 
   _for(_a)
@@ -387,7 +375,6 @@ def _mul(res, a, b)
 end
 
 def _divmod(div, mod, num, denom)
-  # p [div, mod, num, denom]
   one, isOne, greaterThanOne = Variable.new.value(1), Variable.new, Variable.new
 
   _equal(isOne, denom, one)
@@ -532,8 +519,6 @@ def _cmp(res, a, b)
   _endif(less)
 
   [greater, less].each { |e| e.delete }
-
-  # res._v = [0, 1, 255][a._v <=> b._v]
 end
 
 def _a2b(res, a, b, c)
@@ -570,11 +555,6 @@ def _b2a(b, c, d, a)
   _set(d, _d)
 
   [_b, _c, _d].each { |e| e.delete }
-  # t = a._v
-  # b._v = 48 + (t / 100)
-  # c._v = 48 + (t / 10 % 10)
-  # d._v = 48 + (t % 10)
-  # [b, c, d].each {|e| e._v = e._v.wrap}
 end
 
 def _read a
@@ -583,8 +563,6 @@ def _read a
 end
 
 def _msg tokens
-  # p tokens
-
   if $string_mode == false
     a = get_var(tokens)
 
@@ -594,8 +572,6 @@ def _msg tokens
   else
 
     a = tokens.shift_space.gsub(/\\n/, "\n").gsub(/\\t/, "\t")
-    # p "--->", a
-    # p [a, a.ord]
     a.chars.each {|c|
       x = Variable.new.value(c.ord)
       _to(x)
@@ -606,7 +582,6 @@ def _msg tokens
 end
 
 def get_var tokens, context = nil
-  # p "get_var #{tokens}"
   context = $stack_context.last if context.nil?
   val = tokens.shift_space.downcase
   if context == 'main'
@@ -645,7 +620,6 @@ def get_var_or_number tokens
 end
 
 def get_argument(tokens, *arg)
-  # p "get_argument #{tokens[0..tokens.index(EOL)]} context #{$stack_context.last}"
   n_var, n_number, var_first = arg
   vars = []
   numbers = []
@@ -727,7 +701,6 @@ def proc_instruction tokens
 end
 
 def basic_instruction tokens
-  # puts "Running: #{tokens[0...tokens.index(EOL)].join} in #{$stack_context.last} context "
   ins = tokens.shift_space
   args = get_argument(tokens, *NUMBER_COMPONENT_INS[ins])
   raise ExpectedEndOfLine if tokens.shift_space != EOL
@@ -784,18 +757,15 @@ def lget_instruction tokens
 end
 
 def rem_instruction tokens
-  # p tokens[0..tokens.index(EOL)]
   nil while tokens.shift_space != EOL
 end
 
 def read_instruction tokens
-  # p tokens[0..tokens.index(EOL)]
   tokens.shift_space
   _read get_var tokens
 end
 
 def msg_instruction tokens
-  # puts "Running: #{tokens[0...tokens.index(EOL)].join} in #{$stack_context.last} context "
   tokens.shift_space
   while tokens.first_space != EOL
     tokens.first_space
@@ -804,7 +774,6 @@ def msg_instruction tokens
       $string_mode = !$string_mode
       next tokens.shift_space
     end
-    # p tokens
     _msg(tokens)
   end
   raise MismatchedStringQuoteError if $string_mode
@@ -856,13 +825,10 @@ def call_instruction tokens
     raise InvalidVarName, "got #{tokens.first_space}" unless tokens.first_space =~ MATCH_VAR_NAME
     pr.params <<= get_var tokens
   end
-
-  # puts "Calling proc #{pr.name} with params #{pr.params.map {|param| param._name}}"
   pr.run_proc
 end
 
 def control_instruciton tokens
-  # puts "Running: #{tokens[0...tokens.index(EOL)].join} in #{$stack_context.last} context "
   ins = tokens.shift_space
   return (_end tokens) if ins == 'end'
   args = get_argument(tokens, *NUMBER_COMPONENT_INS[ins])
@@ -874,7 +840,6 @@ def get_proc tokens
   proc_mode = false
   deep = 0
   will_del = []
-  puts "Getting procs"
   tokens.each.with_index {|t,i|
     if t.downcase == 'proc'
       raise NestedProcedure if proc_mode
@@ -900,9 +865,7 @@ def get_proc tokens
     deep += 1if CONTROL_INSTRUCTION.include?(t.downcase) and t != 'call'
   }
   will_del.reverse.each {|i| tokens.delete_at(i)}
-  puts "Parsing proc..."
   $proc_tokens.each {|pr| proc_instruction pr}
-  # puts $procs
 end
 
 def run plain_code
@@ -916,14 +879,10 @@ def run plain_code
   $stack_context  = ['main']
 
   Variable.clear
-  puts "Scaning tokens..."
   tokens = plain_code.scan(TOKEN)
   tokens <<= EOL if tokens.last != EOL
   tokens <<= EOF
-  # p tokens
-  puts "Getting procs..."
   get_proc tokens
-  puts "Running main..."
   _run tokens
 end
 
